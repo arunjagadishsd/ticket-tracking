@@ -5,4 +5,4 @@ const router = express.Router();
 
 const ticketController = require("../controllers/ticket.controller");
 
-router.post("/", ticketController);
+router.get("/", ticketController);
