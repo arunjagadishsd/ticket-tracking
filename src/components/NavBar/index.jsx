@@ -18,8 +18,8 @@ const NavBar = () => {
           <Link className="nav-item nav-link active" to="/">
             Blank
           </Link>
-          <Link className="nav-item nav-link active" to="List">
-            List
+          <Link className="nav-item nav-link active" to="MyTickets">
+            MyTickets
           </Link>
           <Link className="nav-item nav-link active" to="Grid">
             Grid
@@ -31,5 +31,5 @@ const NavBar = () => {
       </nav>
     </React.Fragment>
   );
-}
+};
 export default NavBar;
