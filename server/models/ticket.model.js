@@ -17,13 +17,10 @@ const ticketSchema = new Schema({
     required: true,
   },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
-  label: {
-    type: Schema.Types.ObjectId,
-    ref: "Label",
-  },
   status: {
-    type: Schema.Types.ObjectId,
-    ref: "Status",
+    type: String,
+    default: "backlog",
+    enum: ["completed", "in progress", "to do", "backlog"],
   },
   priority: {
     type: String,
