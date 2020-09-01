@@ -12,7 +12,12 @@ const Dashboard = () => {
   });
 
   const getTickets = () => {
-    let promiseList = fetch(CONSTANTS.ENDPOINT.TICKET).then((response) => {
+    let promiseList = fetch(CONSTANTS.ENDPOINT.TICKET, {
+      headers: {
+        "x-auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjRlMTAzYTI2YzhmMzhiMmM2Y2M2NmMiLCJpYXQiOjE1OTg5NTE3MzB9.clnDlzjQJOKF8nULP5aioKpFVe2KS7rQftCl47pWZOg",
+      },
+    }).then((response) => {
       if (!response.ok) {
         throw Error(response.statusText);
       }

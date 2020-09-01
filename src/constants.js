@@ -21,5 +21,6 @@ CONSTANTS.ENDPOINT.LIST = "/api/list";
 CONSTANTS.ENDPOINT.MASTERDETAIL = "/api/masterdetail";
 
 CONSTANTS.ENDPOINT.TICKET = "/api/ticket";
+CONSTANTS.ENDPOINT.AUTH = "/api/auth/signin";
 
 export default CONSTANTS;

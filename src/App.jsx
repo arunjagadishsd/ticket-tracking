@@ -10,6 +10,8 @@ import MyTickets from "./components/MyTickets/MyTickets";
 
 import Grid from "./components/Grid/Grid";
 
+import Login from "./components/Login/login";
+
 import Master_Detail from "./components/Master_Detail/Master_Detail";
 
 //TODO Web Template Studio: Add routes for your new pages here.
@@ -21,6 +23,7 @@ const App = () => {
         <Route exact path="/" component={Dashboard} />
         <Route path="/MyTickets" component={MyTickets} />
         <Route path="/Grid" component={Grid} />
+        <Route path="/login" component={Login} />
         <Route path="/Master_Detail" component={Master_Detail} />
       </Switch>
       <Footer />

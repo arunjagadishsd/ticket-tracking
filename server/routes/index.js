@@ -3,16 +3,19 @@ const CONSTANTS = require("../constants");
 const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 const sampleData = require("../sampleData");
-const { login } = require("../controllers/auth.controller");
+const { signin, signup } = require("../controllers/auth.controller");
 const { getTickets, postTicket } = require("../controllers/ticket.controller");
+const requireAuth = require("../middleware/auth.middleware");
 
 const router = express.Router();
+
 //AUTH ROUTES
-router.get(CONSTANTS.ENDPOINT.AUTH, login);
+router.post(`${CONSTANTS.ENDPOINT.AUTH}/signin`, signin);
+router.post(`${CONSTANTS.ENDPOINT.AUTH}/signup`, signup);
 
 // TICKET ROUTES
-router.get(CONSTANTS.ENDPOINT.TICKET, getTickets);
-router.post(CONSTANTS.ENDPOINT.TICKET, postTicket);
+router.get(CONSTANTS.ENDPOINT.TICKET, requireAuth, getTickets);
+router.post(CONSTANTS.ENDPOINT.TICKET, requireAuth, postTicket);
 
 // MasterDetail Page Endpoint
 router.get(CONSTANTS.ENDPOINT.MASTERDETAIL, (req, res) => {

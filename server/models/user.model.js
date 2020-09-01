@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-const { Schema, model } = mongoose;
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
   email: {
@@ -23,6 +24,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     required: true,
+    default: "user",
     enum: ["admin", "user"],
   },
   createdDate: {
@@ -31,14 +33,13 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.methods.comparePassword = function (candidatePassword, callback) {
-  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-    if (err) {
-      return callback(err);
-    }
-
-    callback(null, isMatch);
-  });
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign(
+    { _id: this._id, isAdmin: this.isAdmin },
+    process.env.SECRET
+  );
+  return token;
 };
+
 const User = mongoose.model("User", userSchema);
 exports.User = User;

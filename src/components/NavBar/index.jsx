@@ -27,6 +27,9 @@ const NavBar = () => {
           <Link className="nav-item nav-link active" to="Master_Detail">
             Master_Detail
           </Link>
+          <Link className="nav-item nav-link active" to="Login">
+            Login
+          </Link>
         </div>
       </nav>
     </React.Fragment>
