@@ -3,6 +3,7 @@ import { Table } from "reactstrap";
 
 import WarningMessage from "../WarningMessage";
 import CONSTANTS from "../../constants";
+import TicketTable from "../Common/TicketTable";
 
 const MyTickets = () => {
   const [tickets, setTickets] = useState([]);
@@ -44,24 +45,7 @@ const MyTickets = () => {
         <h3>Tickets</h3>
       </div>
       <div className="row">
-        <Table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tickets.map((ticket) => (
-              <tr key={ticket._id}>
-                <td>{ticket._id}</td>
-                <td>{ticket.title}</td>
-                <td>{ticket.description}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <TicketTable tickets={tickets} />
         <WarningMessage
           open={warningMessage.warningMessageOpen}
           text={warningMessage.warningMessageText}
