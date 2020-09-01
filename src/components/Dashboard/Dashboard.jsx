@@ -3,6 +3,7 @@
 import WarningMessage from "../WarningMessage";
 import CONSTANTS from "../../constants";
 import TicketTable from "../Common/TicketTable";
+import TicketForm from "../Common/TicketForm";
 
 const Dashboard = () => {
   const [tickets, setTickets] = useState([]);

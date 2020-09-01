@@ -3,16 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-
 import Dashboard from "./components/Dashboard/Dashboard";
-
 import MyTickets from "./components/MyTickets/MyTickets";
-
-import Grid from "./components/Grid/Grid";
-
 import Login from "./components/Login/login";
-
-import Master_Detail from "./components/Master_Detail/Master_Detail";
 
 //TODO Web Template Studio: Add routes for your new pages here.
 const App = () => {
@@ -22,9 +15,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route path="/MyTickets" component={MyTickets} />
-        <Route path="/Grid" component={Grid} />
         <Route path="/login" component={Login} />
-        <Route path="/Master_Detail" component={Master_Detail} />
       </Switch>
       <Footer />
     </React.Fragment>

@@ -10,15 +10,25 @@ const Dashboard = () => {
 
   const login = () => {
     console.log("user", user);
-    let promiseList = fetch("http://localhost:3001/api/auth/signin", {
+    let promiseList = fetch(CONSTANTS.ENDPOINT.AUTH, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(user),
     })
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-        return response.json();
+        console.log("response", response);
+        const res = response.json();
+        console.log("res", res);
+        return res;
+      })
+      .then((res) => {
+        console.log("res", res);
+        return res;
       })
       .catch((err) => console.log("err", err));
     return promiseList;
@@ -30,6 +40,7 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const authToken = await login();
+    console.log("authToken", authToken);
     localStorage.setItem("token", authToken);
     history.push("/");
   };
