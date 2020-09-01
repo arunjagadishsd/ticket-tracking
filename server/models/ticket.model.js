@@ -40,4 +40,5 @@ const ticketSchema = new Schema({
     ref: "User",
   },
 });
-module.exports = model("Todo", ticketSchema);
+const Ticket = mongoose.model("Ticket", ticketSchema);
+exports.Ticket = Ticket;

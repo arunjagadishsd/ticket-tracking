@@ -4,10 +4,12 @@ const express = require("express");
 const { v4: uuidv4 } = require("uuid");
 const sampleData = require("../sampleData");
 const authRoutes = require("./auth.route");
+const ticketRoutes = require("./ticket.route");
 
 const router = express.Router();
 
-router.use(CONSTANTS.ENDPOINT.AUTH);
+router.use(CONSTANTS.ENDPOINT.AUTH, authRoutes);
+router.use(CONSTANTS.ENDPOINT.TICKET, authRoutes);
 
 // MasterDetail Page Endpoint
 router.get(CONSTANTS.ENDPOINT.MASTERDETAIL, (req, res) => {
