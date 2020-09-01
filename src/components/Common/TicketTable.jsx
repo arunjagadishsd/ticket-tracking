@@ -10,6 +10,8 @@ const TicketTable = ({ tickets }) => {
           <th>#</th>
           <th>Title</th>
           <th>Description</th>
+          <th>Priority</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +20,8 @@ const TicketTable = ({ tickets }) => {
             <td>{ticket._id}</td>
             <td>{ticket.title}</td>
             <td>{ticket.description}</td>
+            <td>{ticket.priority}</td>
+            <td>{ticket.status}</td>
           </tr>
         ))}
       </tbody>

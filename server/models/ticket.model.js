@@ -20,7 +20,7 @@ const ticketSchema = new Schema({
   status: {
     type: String,
     default: "backlog",
-    enum: ["completed", "in progress", "to do", "backlog"],
+    enum: ["Completed", "In Progress", "To Do", "Backlog"],
   },
   priority: {
     type: String,

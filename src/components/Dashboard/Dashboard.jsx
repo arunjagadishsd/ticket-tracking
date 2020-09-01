@@ -16,15 +16,19 @@ const Dashboard = () => {
   const getTickets = () => {
     let promiseList = fetch(CONSTANTS.ENDPOINT.TICKET, {
       headers: {
-        "x-auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjRlMTAzYTI2YzhmMzhiMmM2Y2M2NmMiLCJpYXQiOjE1OTg5NTE3MzB9.clnDlzjQJOKF8nULP5aioKpFVe2KS7rQftCl47pWZOg",
+        "x-auth-token": localStorage.getItem("token") || "",
       },
-    }).then((response) => {
-      if (!response.ok) {
-        throw Error(response.statusText);
-      }
-      return response.json();
-    });
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then((tickets) => {
+        setTickets(tickets);
+        return tickets;
+      });
     return promiseList;
   };
   const closeWarningMessage = () => {
@@ -35,9 +39,7 @@ const Dashboard = () => {
   };
   useEffect(() => {
     getTickets()
-      .then((tickets) => {
-        setTickets(tickets);
-      })
+      .then(() => {})
       .catch((error) =>
         setWarningMessage({
           warningMessageOpen: true,
@@ -50,8 +52,10 @@ const Dashboard = () => {
       <div className="row justify-content-center py-5">
         <h3>Dashboard</h3>
       </div>
-      <Button> Add Ticket</Button>
-      <TicketForm />
+      {/* <Row>
+        <Button className="float-right"> Add Ticket</Button>
+      </Row> */}
+      <TicketForm getTickets={getTickets} ticket={{}} />
       <Row>
         <TicketTable tickets={tickets} />
         <WarningMessage

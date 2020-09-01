@@ -13,7 +13,11 @@ const MyTickets = () => {
   });
 
   const getTickets = () => {
-    let promiseList = fetch(CONSTANTS.ENDPOINT.TICKET).then((response) => {
+    let promiseList = fetch(`${CONSTANTS.ENDPOINT.TICKET}/me`, {
+      headers: {
+        "x-auth-token": localStorage.getItem("token") || "",
+      },
+    }).then((response) => {
       if (!response.ok) {
         throw Error(response.statusText);
       }

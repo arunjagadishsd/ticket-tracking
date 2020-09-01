@@ -39,9 +39,8 @@ const Dashboard = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const authToken = await login();
-    console.log("authToken", authToken);
-    localStorage.setItem("token", authToken);
+    const { token } = await login();
+    localStorage.setItem("token", token);
     history.push("/");
   };
   return (

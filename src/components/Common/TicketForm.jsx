@@ -1,8 +1,45 @@
 import React, { useState } from "react";
 import { Button, FormGroup, Label, Input, Col, Row } from "reactstrap";
 
-const TicketForm = () => {
-  const [ticket, setTicket] = useState({});
+import CONSTANTS from "../../constants";
+
+const TicketForm = ({ ticketProp, getTickets }) => {
+  const ticketData = ticketProp
+    ? { ...ticketProp }
+    : {
+        title: "",
+        description: "",
+        priority: "P4",
+        status: "Backlog",
+      };
+  const [ticket, setTicket] = useState(ticketData);
+
+  const postTicket = () => {
+    let promiseList = fetch(CONSTANTS.ENDPOINT.TICKET, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": localStorage.getItem("token") || "",
+      },
+      body: JSON.stringify(ticket),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        console.log("response", response);
+        const res = response.json();
+        console.log("res", res);
+        return res;
+      })
+      .then((res) => {
+        console.log("res", res);
+        getTickets();
+        return res;
+      })
+      .catch((err) => console.log("err", err));
+    return promiseList;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,6 +48,7 @@ const TicketForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    postTicket();
   };
 
   return (
@@ -47,7 +85,12 @@ const TicketForm = () => {
         <Col xs="6">
           <FormGroup>
             <Label>Priority</Label>
-            <Input type="select" name="priority">
+            <Input
+              value={ticket.priority}
+              onChange={handleChange}
+              type="select"
+              name="priority"
+            >
               <option>P1</option>
               <option>P2</option>
               <option>P3</option>
@@ -58,7 +101,12 @@ const TicketForm = () => {
         <Col xs="6">
           <FormGroup>
             <Label>Status</Label>
-            <Input type="select" name="status">
+            <Input
+              value={ticket.status}
+              onChange={handleChange}
+              type="select"
+              name="status"
+            >
               <option>Completed</option>
               <option>In Progress</option>
               <option>To Do</option>
