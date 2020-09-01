@@ -4,6 +4,7 @@ import WarningMessage from "../WarningMessage";
 import CONSTANTS from "../../constants";
 import TicketTable from "../Common/TicketTable";
 import TicketForm from "../Common/TicketForm";
+import { Row, Button } from "reactstrap";
 
 const Dashboard = () => {
   const [tickets, setTickets] = useState([]);
@@ -49,14 +50,16 @@ const Dashboard = () => {
       <div className="row justify-content-center py-5">
         <h3>Dashboard</h3>
       </div>
-      <div className="row">
+      <Button> Add Ticket</Button>
+      <TicketForm />
+      <Row>
         <TicketTable tickets={tickets} />
         <WarningMessage
           open={warningMessage.warningMessageOpen}
           text={warningMessage.warningMessageText}
           onWarningClose={closeWarningMessage}
         />
-      </div>
+      </Row>
     </main>
   );
 };

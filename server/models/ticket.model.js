@@ -16,7 +16,7 @@ const ticketSchema = new Schema({
     type: String,
     required: true,
   },
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+
   status: {
     type: String,
     default: "backlog",
